@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "sercer.servlet.jsp.init-parameters.development",
+    "type": "java.lang.String",
+    "description": "A description for 'sercer.servlet.jsp.init-parameters.development'"
+  },
+  {
+    "name": "spring.servlet.encoding.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.servlet.encoding.enabled'"
+  }
+]}
