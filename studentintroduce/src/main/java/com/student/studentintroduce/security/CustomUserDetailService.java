@@ -11,6 +11,7 @@ import com.student.studentintroduce.domain.UserRole;
 import com.student.studentintroduce.dto.AddUserDto;
 import com.student.studentintroduce.dto.CustomUserDetails;
 import com.student.studentintroduce.repository.UserRepository;
+import com.student.studentintroduce.repository.UserRoleRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +26,10 @@ public class CustomUserDetailService implements UserDetailsService {
     UserRoleRepository roleRepository;
 
     @Override
-    public UserDetails loadUserByUsername(Long userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         UserDo userDo = accountRepository.findById();
-        UserRole userRole = roleRepository.findById();
+        UserRole userRole = roleRepository.findById(userName);
 
         if (userDo == null) {
             log.info("사용자가 없음");
