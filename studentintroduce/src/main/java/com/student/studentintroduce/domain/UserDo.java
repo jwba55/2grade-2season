@@ -2,6 +2,8 @@ package com.student.studentintroduce.domain;
 
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,9 +46,12 @@ public class UserDo {
    @Column(name = "profileImage")
    private String profileImage;
    
+   //가입일
+   @CreationTimestamp
    @Column(name = "userDate")
    private Date userDate;
    
    @Column(name = "gender")
    private Long gender;
+   
 }

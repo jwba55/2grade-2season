@@ -1,6 +1,5 @@
 package com.student.studentintroduce.domain;
 
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,10 +21,4 @@ public class Timetable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "timetable_seq")
 	@Column(name = "timetableId", unique = true)
 	private Long timetableId;
-	
-	@Column(name = "timeDay")
-	private Date timeDay;
-	
-	@Column(name = "term")
-	private Long session;
 }
