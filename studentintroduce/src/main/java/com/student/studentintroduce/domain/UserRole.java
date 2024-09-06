@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,7 +29,6 @@ public class UserRole {
 	@Column(name = "status")
 	private String status;
 	
-	
 	@OneToOne(mappedBy = "userRole")
 	private UserDo userDo;
 	
@@ -37,5 +37,14 @@ public class UserRole {
 	
 	@OneToOne(mappedBy = "userRole")
 	private GradeTerm gradeTerm;
+	
+	@Builder
+	public UserRole(Long userroleId, String role, String status, Professor professor, GradeTerm gradeTerm) {
+		this.userroleId = userroleId;
+		this.role = role;
+		this.status = status;
+		this.professor = professor;
+		this.gradeTerm = gradeTerm;
+	}
 
 }

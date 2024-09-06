@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.student.studentintroduce.domain.Lesson;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -26,10 +28,11 @@ public class AddUserDto {
 	   private Long gender;
 	   private String role;
 	   private String status;
+	   private String lessonName;
 
     @Builder
     public AddUserDto(Long userId, String password, String email, String userName, Date birthday, Long phone, String address,
-    		String profileImage, Date userDate, Long gender, String role, String status) {
+    		String profileImage, Date userDate, Long gender, String role, String status, String lessonName) {
         this.userId = userId;
         this.password = password;
         this.email = email;
@@ -42,6 +45,7 @@ public class AddUserDto {
         this.gender = gender;
         this.role = role;
         this.status = status;
+        this.lessonName = lessonName;
     }
 
     public AddUserDto() {

@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,5 +28,13 @@ public class Lesson {
 	   
 	   @OneToOne(mappedBy = "lesson")
 	   private UserDo userDo;
+	   
+	   @Builder
+	   public Lesson(Long lessonId, String lessonName, UserDo userDo) {
+		   this.lessonId = lessonId;
+		   this.lessonName = lessonName;
+		   this.userDo = userDo;
+	   }
+	   
 
 }
