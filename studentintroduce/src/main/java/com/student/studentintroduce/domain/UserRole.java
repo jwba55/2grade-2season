@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,5 +27,15 @@ public class UserRole {
 	
 	@Column(name = "status")
 	private String status;
+	
+	
+	@OneToOne(mappedBy = "userRole")
+	private UserDo userDo;
+	
+	@OneToOne(mappedBy = "userRole")
+	private Professor professor;
+	
+	@OneToOne(mappedBy = "userRole")
+	private GradeTerm gradeTerm;
 
 }

@@ -28,8 +28,8 @@ public class CustomUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        UserDo userDo = accountRepository.findById();
-        UserRole userRole = roleRepository.findById(userName);
+        UserDo userDo = accountRepository.findById(userName);
+        UserRole userRole = roleRepository.findByUserRoleId(userName);
 
         if (userDo == null) {
             log.info("사용자가 없음");
@@ -53,4 +53,4 @@ public class CustomUserDetailService implements UserDetailsService {
         return customUserDetails;
     }
 
-}
+} 

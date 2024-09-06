@@ -6,6 +6,6 @@ import com.student.studentintroduce.domain.UserRole;
 
 public interface UserRoleRepository extends JpaRepository<UserRole, Long>{
 
-    UserRole findById(String userName);
+    UserRole findByUserRoleId(String userName);
 
 }
