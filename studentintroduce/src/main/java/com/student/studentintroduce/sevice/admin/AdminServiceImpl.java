@@ -1,7 +1,5 @@
 package com.student.studentintroduce.sevice.admin;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,9 +10,10 @@ import com.student.studentintroduce.domain.UserDo;
 import com.student.studentintroduce.domain.UserRole;
 import com.student.studentintroduce.dto.AddUserDto;
 import com.student.studentintroduce.dto.ApiResponseDto;
-import com.student.studentintroduce.dto.UserDto;
 import com.student.studentintroduce.exception.SpecialExceptional.UserAlreadyExistsException;
+import com.student.studentintroduce.repository.LessonRepository;
 import com.student.studentintroduce.repository.UserRepository;
+import com.student.studentintroduce.repository.UserRoleRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -31,36 +30,36 @@ public class AdminServiceImpl implements AdminService {
     
     @Autowired
     LessonRepository lessonRepository;
+    
+    @Autowired
+    UserRoleRepository userRoleRepository;
 
     @Transactional
 	@Override
 	public ApiResponseDto putUser(AddUserDto adduserDto) throws UserAlreadyExistsException{
 		String encodedPw = passwordEncoder.encode(adduserDto.getPassword());
+		
+		Lesson lesson = lessonRepository.getReferenceById(adduserDto.getLessonId());
+		UserRole userRole = userRoleRepository.getReferenceById(adduserDto.getUserroleId());
 
         // Check for duplicate username before saving
-        if (userRepository.findById(adduserDto.getUserName()) == null) {
-        	
-        	Lesson lesson = Lesson.builder()
-                    .lessonName(adduserDto.getUserName())
-                    .build();
-
-            lesson = lessonRepository.save(lesson);
+        if (userRepository.findByUserId(adduserDto.getUserNum()) == null) {
 
             UserDo userDo = UserDo.builder()
-                    .email(adduserDto.getUserName())
-                    .password(encodedPw)
+            		.userNum(adduserDto.getUserNum())
+            		.password(encodedPw)
+                    .email(adduserDto.getEmail())
+                    .userName(adduserDto.getUserName())
+                    .birthday(adduserDto.getBirthday())
+                    .phone(adduserDto.getPhone())
+                    .address(adduserDto.getAddress())
+                    .userDate(adduserDto.getUserDate())
+                    .gender(adduserDto.getGender())
+                    .lesson(lesson)
+                    .userRole(userRole)
                     .build();
 
             userDo = userRepository.save(userDo);
-            
-            UserRole userRole = userRole.builder()
-                    .status(adduserDto.getUserName())
-                    .password(encodedPw)
-                    .build();
-
-            userRole = userRepository.save(userDo);
-            
-            
             
             log.info("회원가입된 회원 아이디" + userDo.getUserId());
 

@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             e.printStackTrace();
         }
 
-        log.info("Email (username) : " + accountDto.getUserName());
+        log.info("userNum : " + accountDto.getUserNum());
         log.info("Password : " + accountDto.getPassword());
 
         // 사용자 인증정보 객체 생성

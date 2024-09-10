@@ -6,6 +6,6 @@ import com.student.studentintroduce.domain.UserDo;
 
 public interface UserRepository extends JpaRepository<UserDo, Long>{
 
-    UserDo findById(String userName);
+    UserDo findByUserId(String userName);
 
 }

@@ -1,11 +1,14 @@
 package com.student.studentintroduce.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -26,14 +29,13 @@ public class Lesson {
 	   @Column(name = "lessonName")
 	   private String lessonName;
 	   
-	   @OneToOne(mappedBy = "lesson")
-	   private UserDo userDo;
+	   @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
+	   private List<UserDo> userDo;
 	   
 	   @Builder
-	   public Lesson(Long lessonId, String lessonName, UserDo userDo) {
+	   public Lesson(Long lessonId, String lessonName) {
 		   this.lessonId = lessonId;
 		   this.lessonName = lessonName;
-		   this.userDo = userDo;
 	   }
 	   
 

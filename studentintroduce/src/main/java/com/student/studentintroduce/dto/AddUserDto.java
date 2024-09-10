@@ -17,6 +17,7 @@ public class AddUserDto {
 	UserRoleDto roleDto;
 
 	private Long userId;
+	private String userNum;
 	   private String password;
 	   private String email;
 	   private String userName;
@@ -28,12 +29,14 @@ public class AddUserDto {
 	   private Long gender;
 	   private String role;
 	   private String status;
-	   private String lessonName;
+	   private Long lessonId;
+	   private Long userroleId;
 
     @Builder
-    public AddUserDto(Long userId, String password, String email, String userName, Date birthday, Long phone, String address,
-    		String profileImage, Date userDate, Long gender, String role, String status, String lessonName) {
+    public AddUserDto(Long userId, String userNum, String password, String email, String userName, Date birthday, Long phone, String address,
+    		String profileImage, Date userDate, Long gender, String role, String status, Long lessonId, Long userroleId) {
         this.userId = userId;
+        this.userNum = userNum;
         this.password = password;
         this.email = email;
         this.userName = userName;
@@ -45,7 +48,8 @@ public class AddUserDto {
         this.gender = gender;
         this.role = role;
         this.status = status;
-        this.lessonName = lessonName;
+        this.lessonId = lessonId;
+        this.userroleId = userroleId;
     }
 
     public AddUserDto() {

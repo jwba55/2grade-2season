@@ -13,7 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -31,6 +31,9 @@ public class UserDo {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
    @Column(name = "userId", unique = true)
    private Long userId;
+   
+   @Column(name = "userNum")
+   private String userNum;
    
    @Column(name = "password")
    private String password;
@@ -63,15 +66,17 @@ public class UserDo {
    
    @OneToOne(fetch =FetchType.LAZY)
    @JoinColumn(name = "userroleId", referencedColumnName = "userroleId")
-   private UserRole userrole;
+   private UserRole userRole;
    
-   @OneToMany(mappedBy = "userDo", cascade = CascadeType.ALL, orphanRemoval = true)
-   private List<Lesson> lesson;
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "lessonId", referencedColumnName = "lessonId")
+   private Lesson lesson;
    
    @Builder
-   public UserDo(Long userId, String password,String email, String userName, Date birthday, Long phone, String address,
-		   String profileImage, Date userDate, Long gender, UserRole userrole) {
+   public UserDo(Long userId, String userNum, String password,String email, String userName, Date birthday, Long phone, String address,
+		   String profileImage, Date userDate, Long gender, UserRole userRole, Lesson lesson) {
 	   this.userId = userId;
+	   this.userNum = userNum;
 	   this.password = password;
 	   this.email = email;
 	   this.userName = userName;
@@ -81,7 +86,8 @@ public class UserDo {
 	   this.profileImage = profileImage;
 	   this.userDate = userDate;
 	   this.gender = gender;
-	   this.userrole = userrole;
+	   this.userRole = userRole;
+	   this.lesson = lesson;
    }
    
 }
