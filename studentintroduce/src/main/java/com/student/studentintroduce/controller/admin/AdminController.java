@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.student.studentintroduce.dto.AddUserDto;
 import com.student.studentintroduce.dto.ApiResponseDto;
+import com.student.studentintroduce.dto.CustomUserDetails;
 import com.student.studentintroduce.exception.SpecialExceptional.UserAlreadyExistsException;
 import com.student.studentintroduce.sevice.admin.AdminService;
 
@@ -12,12 +13,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 
 @Tag(name = "관리자 페이지", description = "관리자 권한 활용")
@@ -28,13 +32,14 @@ public class AdminController {
 
 	private final AdminService adminservice;
 	
-	@Operation(summary = "관리자의 회원등록 및 수정")
-	@SecurityRequirement(name = "Baarer Authentication")
-	@PutMapping("/user/put")
-	public ResponseEntity<?> putUser(@RequestBody AddUserDto adduserDto) throws UserAlreadyExistsException, IOException{
+	@Operation(summary = "관리자의 회원 등록")
+	@SecurityRequirement(name = "Bearer Authentication")
+	@PostMapping("/user/add")
+	public ResponseEntity<?> addUser(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestBody AddUserDto adduserDto) throws UserAlreadyExistsException, IOException{
 		
-		ApiResponseDto apiResponse = adminservice.putUser(adduserDto);
+		ApiResponseDto apiResponse = adminservice.addUser(adduserDto);
 		
 		return new ResponseEntity<>(apiResponse.getMessage(), apiResponse.getStatus());
 	}
+
 }

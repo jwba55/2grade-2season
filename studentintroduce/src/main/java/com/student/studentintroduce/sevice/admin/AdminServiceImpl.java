@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Transactional
 	@Override
-	public ApiResponseDto putUser(AddUserDto adduserDto) throws UserAlreadyExistsException{
+	public ApiResponseDto addUser(AddUserDto adduserDto) throws UserAlreadyExistsException{
 		String encodedPw = passwordEncoder.encode(adduserDto.getPassword());
 		
 		Lesson lesson = lessonRepository.getReferenceById(adduserDto.getLessonId());
@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService {
 
             userDo = userRepository.save(userDo);
             
-            log.info("회원가입된 회원 아이디" + userDo.getUserId());
+            log.info("회원 등록된 회원 아이디" + userDo.getUserId());
 
         } else {
             throw new UserAlreadyExistsException();
@@ -71,6 +71,6 @@ public class AdminServiceImpl implements AdminService {
                 .message("회원 등록이 완료되었습니다.")
                 .status(HttpStatus.CREATED)
                 .build();
-	}
-
+    }
+    
 }

@@ -9,6 +9,6 @@ import com.student.studentintroduce.dto.AddUserDto;
 
 public interface AdminService {
 
-	ApiResponseDto putUser(AddUserDto adduserDto) throws UserAlreadyExistsException;
+	ApiResponseDto addUser(AddUserDto adduserDto) throws UserAlreadyExistsException;
 
 }
