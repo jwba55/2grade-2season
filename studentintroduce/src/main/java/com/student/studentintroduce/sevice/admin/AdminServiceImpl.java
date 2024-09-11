@@ -15,6 +15,7 @@ import com.student.studentintroduce.repository.LessonRepository;
 import com.student.studentintroduce.repository.UserRepository;
 import com.student.studentintroduce.repository.UserRoleRepository;
 
+import io.jsonwebtoken.io.IOException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,14 +37,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Transactional
 	@Override
-	public ApiResponseDto addUser(AddUserDto adduserDto) throws UserAlreadyExistsException{
+	public ApiResponseDto addUser(AddUserDto adduserDto, Long userId) throws UserAlreadyExistsException, IOException{
 		String encodedPw = passwordEncoder.encode(adduserDto.getPassword());
 		
 		Lesson lesson = lessonRepository.getReferenceById(adduserDto.getLessonId());
 		UserRole userRole = userRoleRepository.getReferenceById(adduserDto.getUserroleId());
 
         // Check for duplicate username before saving
-        if (userRepository.findByUserId(adduserDto.getUserNum()) == null) {
+        if (userRepository.findById(userId).isPresent()) {
+            throw new UserAlreadyExistsException();
+        } else{
 
             UserDo userDo = UserDo.builder()
             		.userNum(adduserDto.getUserNum())
@@ -63,14 +66,13 @@ public class AdminServiceImpl implements AdminService {
             
             log.info("회원 등록된 회원 아이디" + userDo.getUserId());
 
-        } else {
-            throw new UserAlreadyExistsException();
         }
+
         
         return ApiResponseDto.builder()
                 .message("회원 등록이 완료되었습니다.")
                 .status(HttpStatus.CREATED)
                 .build();
     }
-    
+
 }

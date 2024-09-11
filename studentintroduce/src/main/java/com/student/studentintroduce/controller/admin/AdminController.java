@@ -12,16 +12,15 @@ import com.student.studentintroduce.sevice.admin.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.IOException;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 
 
 @Tag(name = "관리자 페이지", description = "관리자 권한 활용")
@@ -35,9 +34,9 @@ public class AdminController {
 	@Operation(summary = "관리자의 회원 등록")
 	@SecurityRequirement(name = "Bearer Authentication")
 	@PostMapping("/user/add")
-	public ResponseEntity<?> addUser(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestBody AddUserDto adduserDto) throws UserAlreadyExistsException, IOException{
+	public ResponseEntity<?> addUser(@Valid @RequestBody AddUserDto adduserDto) throws UserAlreadyExistsException, IOException{
 		
-		ApiResponseDto apiResponse = adminservice.addUser(adduserDto);
+		ApiResponseDto apiResponse = adminservice.addUser(adduserDto, adduserDto.getUserId());
 		
 		return new ResponseEntity<>(apiResponse.getMessage(), apiResponse.getStatus());
 	}
