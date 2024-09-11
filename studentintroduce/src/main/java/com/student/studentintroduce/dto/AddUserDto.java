@@ -34,7 +34,7 @@ public class AddUserDto {
 
     @Builder
     public AddUserDto(Long userId, String userNum, String password, String email, String userName, Date birthday, Long phone, String address,
-    		String profileImage, Date userDate, Long gender, String role, String status, Long lessonId, Long userroleId) {
+    		String profileImage, Date userDate, Long gender, String status, Long lessonId, Long userroleId) {
         this.userId = userId;
         this.userNum = userNum;
         this.password = password;
@@ -46,7 +46,6 @@ public class AddUserDto {
         this.profileImage = profileImage;
         this.userDate = userDate;
         this.gender = gender;
-        this.role = role;
         this.status = status;
         this.lessonId = lessonId;
         this.userroleId = userroleId;

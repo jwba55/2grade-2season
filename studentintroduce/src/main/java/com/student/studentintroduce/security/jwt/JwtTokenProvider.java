@@ -40,8 +40,7 @@ public class JwtTokenProvider {
                 .keyId(JwtConstants.TOKEN_TYPE).and()
                 .expiration(new Date(System.currentTimeMillis() + 864000000))
                 .claim("userId", customUserDetails.getAdduserDto().getUserId())
-                .claim("userNum", customUserDetails.getAdduserDto().getUserNum())
-                .claim("role", customUserDetails.getAdduserDto().getRole())
+                .claim("userroleId", customUserDetails.getAdduserDto().getUserroleId())
                 .signWith(getShaKey(), Jwts.SIG.HS512)
                 .compact();
 
@@ -59,7 +58,7 @@ public class JwtTokenProvider {
 
         String strUserId = parsedToken.getPayload().get("userId").toString();
         Long userId = Long.valueOf(strUserId);
-        String role = parsedToken.getPayload().get("role").toString();
+        String role = parsedToken.getPayload().get("userroleId").toString();
 
         log.info("토큰 데이터 추출 완료");
 

@@ -45,11 +45,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             e.printStackTrace();
         }
 
-        log.info("userNum : " + accountDto.getUserNum());
+        log.info("userId : " + accountDto.getUserId());
         log.info("Password : " + accountDto.getPassword());
 
         // 사용자 인증정보 객체 생성
-        Authentication authentication = new UsernamePasswordAuthenticationToken(accountDto.getUserName(),
+        Authentication authentication = new UsernamePasswordAuthenticationToken(accountDto.getUserId(),
                 accountDto.getPassword());
 
         log.info("사용자 인증정보 객체 생성 완료");

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.student.studentintroduce.dto.AddUserDto;
 import com.student.studentintroduce.dto.ApiResponseDto;
-import com.student.studentintroduce.dto.CustomUserDetails;
 import com.student.studentintroduce.exception.SpecialExceptional.UserAlreadyExistsException;
 import com.student.studentintroduce.sevice.admin.AdminService;
 

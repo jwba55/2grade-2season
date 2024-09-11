@@ -1,5 +1,7 @@
 package com.student.studentintroduce.security;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,10 +28,9 @@ public class CustomUserDetailService implements UserDetailsService {
     UserRoleRepository roleRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUserId(Long userId) throws UserNotFoundException {
 
-        UserDo userDo = accountRepository.findByUserId(userName);
-        UserRole userRole = roleRepository.findByUserRoleId(userName);
+        UserDo userDo = accountRepository.findById();
 
         if (userDo == null) {
             log.info("사용자가 없음");
@@ -43,7 +44,8 @@ public class CustomUserDetailService implements UserDetailsService {
                 .userName(userDo.getUserName())
                 .userName(userDo.getEmail())
                 .password(userDo.getPassword())
-                .role(userRole.getRole())
+                .lessonId(userDo.getLesson().getLessonId())
+                .userroleId(userDo.getUserRole().getUserroleId())
                 .build();
 
         CustomUserDetails customUserDetails = new CustomUserDetails(accountDto);

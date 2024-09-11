@@ -43,8 +43,8 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return adduserDto.getUserName();
+    public Long getUserId() {
+        return adduserDto.getUserId();
     }
     
     @Override
