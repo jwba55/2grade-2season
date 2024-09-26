@@ -28,24 +28,22 @@ public class CustomUserDetailService implements UserDetailsService {
     UserRoleRepository roleRepository;
 
     @Override
-    public UserDetails loadUserByUserId(Long userId) throws UserNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDo userDo = accountRepository.findById();
+    	Long userId = Long.valueOf(username);
+    	
+        Optional<UserDo> userDo = accountRepository.findById(userId);
 
-        if (userDo == null) {
-            log.info("사용자가 없음");
-            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
-        }
         log.info("사용자가 있음");
         log.info(userDo.toString());
 
         AddUserDto accountDto = AddUserDto.builder()
-                .userId(userDo.getUserId())
-                .userName(userDo.getUserName())
-                .userName(userDo.getEmail())
-                .password(userDo.getPassword())
-                .lessonId(userDo.getLesson().getLessonId())
-                .userroleId(userDo.getUserRole().getUserroleId())
+                .username(userDo.get().getUsername())
+                .name(userDo.get().getName())
+                .email(userDo.get().getEmail())
+                .password(userDo.get().getPassword())
+                .lessonId(userDo.get().getLesson().getLessonId())
+                .userroleId(userDo.get().getUserRole().getUserroleId())
                 .build();
 
         CustomUserDetails customUserDetails = new CustomUserDetails(accountDto);

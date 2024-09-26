@@ -16,11 +16,10 @@ public class AddUserDto {
 	@Autowired
 	UserRoleDto roleDto;
 
-	private Long userId;
-	private String userNum;
+	   private Long username;
 	   private String password;
 	   private String email;
-	   private String userName;
+	   private String name;
 	   private Date birthday;
 	   private Long phone;
 	   private String address;
@@ -33,13 +32,12 @@ public class AddUserDto {
 	   private Long userroleId;
 
     @Builder
-    public AddUserDto(Long userId, String userNum, String password, String email, String userName, Date birthday, Long phone, String address,
+    public AddUserDto(Long username, String password, String email, String name, Date birthday, Long phone, String address,
     		String profileImage, Date userDate, Long gender, String status, Long lessonId, Long userroleId) {
-        this.userId = userId;
-        this.userNum = userNum;
+        this.username = username;
         this.password = password;
         this.email = email;
-        this.userName = userName;
+        this.name = name;
         this.birthday = birthday;
         this.phone = phone;
         this.address = address;

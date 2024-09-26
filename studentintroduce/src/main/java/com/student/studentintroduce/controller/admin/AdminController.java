@@ -35,7 +35,7 @@ public class AdminController {
 	@PostMapping("/user/add")
 	public ResponseEntity<?> addUser(@Valid @RequestBody AddUserDto adduserDto) throws UserAlreadyExistsException, IOException{
 		
-		ApiResponseDto apiResponse = adminservice.addUser(adduserDto, adduserDto.getUserId());
+		ApiResponseDto apiResponse = adminservice.addUser(adduserDto, adduserDto.getUsername());
 		
 		return new ResponseEntity<>(apiResponse.getMessage(), apiResponse.getStatus());
 	}

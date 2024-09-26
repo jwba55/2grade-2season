@@ -29,11 +29,8 @@ public class UserDo {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
-   @Column(name = "userId", unique = true)
-   private Long userId;
-   
-   @Column(name = "userNum")
-   private String userNum;
+   @Column(name = "username", unique = true)
+   private Long username;
    
    @Column(name = "password")
    private String password;
@@ -41,8 +38,8 @@ public class UserDo {
    @Column(name = "email")
    private String email;
    
-   @Column(name = "userName")
-   private String userName;
+   @Column(name = "name")
+   private String name;
    
    @Column(name = "birthday")
    private Date birthday;
@@ -73,13 +70,12 @@ public class UserDo {
    private Lesson lesson;
    
    @Builder
-   public UserDo(Long userId, String userNum, String password,String email, String userName, Date birthday, Long phone, String address,
+   public UserDo(Long username, String password,String email, String name, Date birthday, Long phone, String address,
 		   String profileImage, Date userDate, Long gender, UserRole userRole, Lesson lesson) {
-	   this.userId = userId;
-	   this.userNum = userNum;
+	   this.username = username;
 	   this.password = password;
 	   this.email = email;
-	   this.userName = userName;
+	   this.name = name;
 	   this.birthday = birthday;
 	   this.phone = phone;
 	   this.address = address;

@@ -39,8 +39,9 @@ public class JwtTokenProvider {
         String accessToken = Jwts.builder().header()
                 .keyId(JwtConstants.TOKEN_TYPE).and()
                 .expiration(new Date(System.currentTimeMillis() + 864000000))
-                .claim("userId", customUserDetails.getAdduserDto().getUserId())
+                .claim("username", customUserDetails.getAdduserDto().getUsername())
                 .claim("userroleId", customUserDetails.getAdduserDto().getUserroleId())
+                .claim("lessonId", customUserDetails.getAdduserDto().getLessonId())
                 .signWith(getShaKey(), Jwts.SIG.HS512)
                 .compact();
 
@@ -56,13 +57,13 @@ public class JwtTokenProvider {
         String jwt = authHeader.replace(JwtConstants.TOKEN_PREFIX, "");
         Jws<Claims> parsedToken = Jwts.parser().verifyWith(getShaKey()).build().parseSignedClaims(jwt);
 
-        String strUserId = parsedToken.getPayload().get("userId").toString();
-        Long userId = Long.valueOf(strUserId);
+        String strUserId = parsedToken.getPayload().get("username").toString();
+        Long username = Long.valueOf(strUserId);
         String role = parsedToken.getPayload().get("userroleId").toString();
 
         log.info("토큰 데이터 추출 완료");
 
-        AddUserDto adduserDto = AddUserDto.builder().userId(userId).build();
+        AddUserDto adduserDto = AddUserDto.builder().username(username).build();
         UserDetails userDetails = new CustomUserDetails(adduserDto);
 
         // GrantedAuthority 객체로 변환

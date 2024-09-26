@@ -37,22 +37,22 @@ public class AdminServiceImpl implements AdminService {
 
     @Transactional
 	@Override
-	public ApiResponseDto addUser(AddUserDto adduserDto, Long userId) throws UserAlreadyExistsException, IOException{
+	public ApiResponseDto addUser(AddUserDto adduserDto, Long username) throws UserAlreadyExistsException, IOException{
 		String encodedPw = passwordEncoder.encode(adduserDto.getPassword());
 		
 		Lesson lesson = lessonRepository.getReferenceById(adduserDto.getLessonId());
 		UserRole userRole = userRoleRepository.getReferenceById(adduserDto.getUserroleId());
 
         // Check for duplicate username before saving
-        if (userRepository.findById(userId).isPresent()) {
+        if (userRepository.findById(username).isPresent()) {
             throw new UserAlreadyExistsException();
         } else{
 
             UserDo userDo = UserDo.builder()
-            		.userNum(adduserDto.getUserNum())
+                    .username(adduserDto.getUsername())
             		.password(encodedPw)
                     .email(adduserDto.getEmail())
-                    .userName(adduserDto.getUserName())
+                    .name(adduserDto.getName())
                     .birthday(adduserDto.getBirthday())
                     .phone(adduserDto.getPhone())
                     .address(adduserDto.getAddress())
@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
 
             userDo = userRepository.save(userDo);
             
-            log.info("회원 등록된 회원 아이디" + userDo.getUserId());
+            log.info("회원 등록된 회원 아이디" + userDo.getUsername());
 
         }
 
