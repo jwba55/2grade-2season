@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="side.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="user.css">
+
+</head>
+<body>
+  <div class="primary-nav">
+
+    <button href="#" class="hamburger open-panel nav-toggle">
+  <span class="screen-reader-text">Menu</span>
+  </button>
+  
+    <nav role="navigation" class="menu">
+  
+      <a href="main.html" class="logotype"><img src="https://www.kopo.ac.kr/images/logo_new/daejeon.png" alt="LOGO"></a>
+      
+      <div class="overflow-container">
+  
+        <ul class="menu-dropdown">
+  
+          <li><a href="user.html">회원정보</a><span class="icon"><i class="fa fa-user"></i></span></li>
+  
+          <li class="menu-hasdropdown">
+            <a href="#">수강신청</a><span class="icon"><i class="fa fa-check-square"></i></span>
+  
+            <label title="toggle menu" for="settings">
+          <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+        </label>
+            <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+  
+            <ul class="sub-menu-dropdown">
+              <li><a href="">시간표</a></li>
+            </ul>
+          </li>
+  
+          <li><a href="#">학사일정</a><span class="icon"><i class="fa fa-calendar-check"></i></span></li>
+            
+          <li><a href="#">기숙사</a><span class="icon"><i class="fa fa-home"></i></span></li>
+
+          <li><a href="https://www.kopo.ac.kr/daejeon/content.do?menu=5417">식당메뉴</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
+
+          <li><a href="https://www.kopo.ac.kr/daejeon/board.do?menu=5427">공지사항</a><span class="icon"><i class="fa fa-bullhorn"></i></span></li>
+
+          <li><a href="https://www.kopo.ac.kr/daejeon/board.do?menu=5428">문의게시판</a><span class="icon"><i class="fa fa-comments"></i></span></li>
+  
+        </ul>
+  
+      </div>
+  
+    </nav>
+  
+  </div>
+
+  <div class="container">
+    <h1>회원 정보</h1>
+    <form id="student-info-form" onsubmit="return false">
+      
+      <div class="form-group">
+        <label for="profileimage">프로필 사진:</label>
+        <input type="file" id="profileimage" name="profileimage" accept="image/*" onchange="previewProfileImage(event)">
+        <img id="profileimage-preview" src="https://via.placeholder.com/150" alt="프로필 사진 미리보기">
+      </div>
+
+      <div class="form-group">
+        <label for="student-id">학번:</label>
+        <input type="text" id="student-id" name="student-id" value="20230001" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" value="홍길동" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" value="student@school.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">생년월일:</label>
+        <input type="date" id="birthday" name="birthday" value="student@school.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">비밀번호:</label>
+        <input type="text" id="password" name="password" value="" required>
+      </div>
+
+      <div class="form-group">
+        <label for="major">전공:</label>
+        <input type="text" id="major" name="major" value="컴퓨터공학" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">전화번호:</label>
+        <input type="tel" id="phone" name="phone" value="010-1234-5678" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">분류:</label>
+        <input type="text" id="category" name="category" value="" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">주소:</label>
+        <input type="text" id="address" name="address" value="" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">성별:</label>
+        <input type="gender" id="gender" name="gender" value="" required>
+      </div>
+
+      <div class="form-group sticky">
+        <button type="submit" onclick="updateInfo()">정보 수정</button>
+      </div>
+    </form>
+    <p id="result-message" class="hidden">정보가 수정되었습니다!</p>
+  </div>
+</div>
+<script src="side.js"></script>
+<script src="profileimage.js"></script>
+</body>
+</html>

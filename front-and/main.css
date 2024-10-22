@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+html {
+    background-image: url('https://img.freepik.com/premium-photo/pastel-school-supplies-flatlay_640251-117937.jpg?w=900');
+    background-size: cover; /* 이미지를 화면에 맞게 */
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    overflow: hidden;
+}
+
+.header-container {
+  display: flex;         /* 이미지와 시간을 나란히 배치 */
+  justify-content: center; /* 이미지와 시간 사이에 공간을 둠 */
+  align-items: end;   /* 세로로 가운데 정렬 */
+  position: fixed;
+  padding: 10px 20px;
+  top: 50px ;              /* 화면의 최상단에 위치 */
+  left: 0;             /* 좌측에 고정 */
+  width: 100%;         /* 헤더의 가로 길이를 전체 화면으로 설정 */
+  text-align: center;  /* 이미지가 가운데 정렬되도록 설정 */
+}
+
+img {
+  width: 260px;
+  height: auto;       /* 이미지 비율을 유지하며 크기 변경 */
+}
+
+#clock {
+  text-align: left;             /* 시간을 오른쪽 정렬 */
+  padding: inherit;
+}
+
+#time {
+  font-size: 24px;               /* 시간 크기 */
+  color: #333;
+}
+
+#date {
+  font-size: 16px;               /* 날짜 크기 */
+  color: #666;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	color: #fff;
+	font-size: 17px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+	width: calc(4*170px);
+	height: calc(2*170px);
+	margin: 100px auto;
+	box-shadow: 0 0 15px rgba(0,0,0,.6);
+}
+
+.tile {
+	width: 170px;
+	height: 170px;
+	text-align: center;
+	float: left;
+}
+
+.tile {
+	outline: 7px solid rgba(255,255,255,0);
+	transition: outline .5s;
+    position: relative; /* outline */
+}
+
+.tile:hover {
+	outline-color: rgba(255,255,255,.4);
+	transition: outline .5s;
+    z-index: 3000 !important; /* outline */
+}
+
+.tile > a {
+	width: inherit;
+	height: inherit;
+	display: block;
+	color: #fff;
+	text-decoration: none !important;
+}
+
+.blue { background-color: #00c0e4; }
+.mint { background-color: #2ecc71; }
+.purple { background-color: #7658f8; }
+.silver { background-color: #c0c0c0; }
+
+.yellow { background-color: #eac14d; }
+.red { background-color: #e6567a; }
+.orange { background-color: #ffa07a; }
+.pink { background-color: #cb70d7; }
+
+img.icon {
+	width: 75px;
+	height: 75px;
+	margin: 28px 0 14px;
+}
+
+.title {
+	display: block;
+}
+
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>project</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <div class="header-container">
+        <img src="images/daejeon.png" alt="daejeon logo">
+        <div id="clock">
+            <div id="time"></div>  <!-- 시간을 표시할 div -->
+            <div id="date"></div>  <!-- 날짜를 표시할 div -->
+        </div>
+    </div>
+  <div class="container">
+    <div class="tile blue" id="">
+  <a href="회원정보.html">
+            <img src="images/person.png" class="icon" />
+            <span class="title">회원정보</span>
+        </a>
+    </div>
+  
+    <div class="tile mint" id="">
+  <a href="/">
+            <img src="images/clock.png" class="icon" />
+            <span class="title">시간표</span>
+        </a>
+    </div>
+  
+    <div class="tile purple" id="">
+  <a href="/">
+            <img src="images/calendar.png" class="icon" />
+            <span class="title">학사일정</span>
+        </a>
+    </div>
+  
+    <div class="tile yellow" id="">
+      <a href="/">
+            <img src="images/check.png" class="icon" />
+            <span class="title">수강시청</span>
+        </a>
+    </div>
+  
+    <div class="tile red" id="">
+        <a href="/">
+            <img src="images/shop.png" class="icon" />
+            <span class="title">기숙사</span>
+        </a>
+    </div>
+  
+    <div class="tile pink" id="">
+        <a href="https://www.kopo.ac.kr/daejeon/content.do?menu=5417">
+            <img src="images/eat.png" class="icon" />
+            <span class="title">식당메뉴</span>
+        </a>
+    </div>
+
+    <div class="tile orange" id="">
+      <a href="https://www.kopo.ac.kr/daejeon/board.do?menu=5427">
+          <img src="images/megaphone.png" class="icon" />
+          <span class="title">공지사항</span>
+      </a>
+  </div>
+
+  <div class="tile silver" id="">
+    <a href="https://www.kopo.ac.kr/daejeon/board.do?menu=5428">
+        <img src="images/chat.png" class="icon" />
+        <span class="title">문의게시판</span>
+    </a>
+</div>
+</div>
+</body>
+<footer>
+  <div class="footer-links">
+    <a href="https://www.kopo.ac.kr/daejeon/content.do?menu=5449">찾아오시는 길</a>
+    <a href="https://www.kopo.ac.kr/daejeon/content.do?menu=5452">개인정보처리방침</a>
+    <a href="https://www.kopo.ac.kr/content.do?menu=1685">이메일무단수집거부</a>
+    <a href="https://www.kopo.ac.kr/daejeon/index.do#sec1">학교홈페이지</a>
+</div>
+  <div class="footer-content">
+      <p>한국폴리텍대학 대젼캠퍼스 | [34503] 대전광역시 동구 우암로 352-21 | [TEL] 042-670-0600 | 이메일: info@schoolname.ac.kr</p>
+  </div>
+</footer>
+<script>
+  function updateClock() {
+      const now = new Date();
+
+      // 시간 형식 설정
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const isAm = hours < 12 ? 'AM' : 'PM';
+      
+      // 12시간 형식으로 변환
+      hours = hours % 12;
+      hours = hours ? hours : 12;  // 0시를 12시로 표시
+
+      // 날짜 형식 설정
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;  // 월은 0부터 시작하므로 +1
+      const date = now.getDate();
+      
+      // 요일 설정
+      const weekDays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+      const day = weekDays[now.getDay()]; // 요일 인덱스를 통해 요일 출력
+
+      // 최종 시간 및 날짜 문자열 생성
+      const currentTime = `${isAm} ${String(hours).padStart(2, '0')}:${minutes}`;
+      const currentDate = `${year}년 ${month}월 ${date}일 ${day}`;
+
+      // 시간을 화면에 표시
+      document.getElementById('time').textContent = currentTime;
+      document.getElementById('date').textContent = currentDate;
+  }
+  
+  setInterval(updateClock, 1000);  // 1초마다 시간 업데이트
+  updateClock();  // 페이지가 로드될 때 즉시 시간 표시
+</script>
+</html>
